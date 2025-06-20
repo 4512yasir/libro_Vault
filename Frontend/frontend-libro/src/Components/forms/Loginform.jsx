@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import '../../css/'
 
 
-export default function Loginform(){
+export default function LoginForm(){
     const [username,setUsername] = useState("")
     const[password,setPassword] = useState("")
 
@@ -38,6 +37,7 @@ export default function Loginform(){
           <div className="submit">
             <button type="submit">Login</button>
           </div>
+         
 
          </form>
 

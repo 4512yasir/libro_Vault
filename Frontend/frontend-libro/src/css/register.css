@@ -1,0 +1,98 @@
+.register-page {
+    display: flex;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.left {
+    flex: 1;
+    background-color: #27344d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.left img {
+    max-width: 70%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.right {
+    flex: 2;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.top-text h1 {
+    font-size: 2rem;
+    color: #27344d;
+    margin-bottom: 8px;
+}
+
+.top-text h4 {
+    color: #6c757d;
+    margin-bottom: 32px;
+}
+
+.inputs {
+    max-width: 500px;
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 6px;
+    color: #27344d;
+    font-weight: 500;
+}
+
+.input-group input,
+.select-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 16px;
+    font-size: 1rem;
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #256d48;
+}
+
+.links {
+    margin-top: 20px;
+}
+
+.links a {
+    margin-right: 20px;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}

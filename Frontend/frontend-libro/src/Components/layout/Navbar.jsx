@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "../../css/Layout.css";
 
+
+
 export default function Navbar() {
-  const [isLoginVisible, setLoginVisible] = useState(false);
-  const [isSignupVisible, setSignupVisible] = useState(false);
+
 
   
   const user = JSON.parse(localStorage.getItem("user"));
@@ -53,9 +54,9 @@ export default function Navbar() {
     navLinks = (
       <>
         <a href="/">Home</a>
-        <button onClick={() => setLoginVisible(true)}>Login</button>
-        <button onClick={() => setSignupVisible(true)}>Register</button>
-        <a href="/guest-access">Guest Access</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/guest">Guest Access</a>
       </>
     );
   }
@@ -71,12 +72,7 @@ export default function Navbar() {
       </div>
 
      
-      {isLoginVisible && (
-        <div className="modal">Login Form Component Goes Here</div>
-      )}
-      {isSignupVisible && (
-        <div className="modal">Register Form Component Goes Here</div>
-      )}
+    
     </div>
   );
 }
