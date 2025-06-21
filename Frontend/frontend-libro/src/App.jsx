@@ -4,6 +4,7 @@ import Navbar from "./Components/layout/Navbar";
 import LoginPage from "./Pages/Login";
 import RegisterPage from "./Pages/Registration.jsx";
 import GuestRegistrationPage from "./Pages/guestregistartion.jsx";
+import HomePage from "./Pages/homepage.jsx";
 
 function AppContent() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function AppContent() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/guest"  element={<GuestRegistrationPage/>}/>
+        <Route path="/"   element={<HomePage/>}/>
       </Routes>
     </div>
   );

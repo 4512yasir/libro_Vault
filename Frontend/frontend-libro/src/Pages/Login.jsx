@@ -20,6 +20,7 @@ export default function LoginPage(){
                  <div className="links">
              <a href="/register">Register</a>
              <a href="/guest">Guest</a>
+             <a href="/">Home</a>
           </div>
             </div>
         

@@ -1,0 +1,111 @@
+.home-page-v2 {
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+    background-color: #f0f4f8;
+}
+
+/* Hero Section */
+.hero-v2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 60px;
+    background: linear-gradient(to right, #f4b400, #ffd966);
+}
+
+.hero-content-v2 {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.hero-content-v2 h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: #27344d;
+}
+
+.hero-content-v2 p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.primary-btn {
+    background-color: #27344d;
+    color: #ffffff;
+}
+
+.primary-btn:hover {
+    background-color: #1c2635;
+}
+
+.secondary-btn {
+    background-color: #ffffff;
+    color: #27344d;
+    border: 2px solid #27344d;
+}
+
+.secondary-btn:hover {
+    background-color: #f2f2f2;
+}
+
+.hero-img-v2 {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-img-v2 img {
+    max-width: 90%;
+    height: auto;
+}
+
+/* Features Section */
+.features-v2 {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 40px;
+    background-color: #ffffff;
+    flex-wrap: wrap;
+}
+
+.feature-box {
+    flex: 1 1 280px;
+    background-color: #f8f9fa;
+    margin: 15px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.07);
+    text-align: center;
+}
+
+.feature-box h3 {
+    font-size: 1.5rem;
+    color: #2b2d42;
+    margin-bottom: 12px;
+}
+
+.feature-box p {
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Footer Fix */
+.footer {
+    margin-top: 50px;
+}

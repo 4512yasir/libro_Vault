@@ -21,6 +21,7 @@ export default function RegisterPage(){
             <div className="links">
              <a href="/login">Login</a>
              <a href="/guest">Guest</a>
+              <a href="/">Home</a>
           </div>
 
           </div>

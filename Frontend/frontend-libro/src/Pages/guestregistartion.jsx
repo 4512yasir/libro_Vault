@@ -14,6 +14,7 @@ export default function GuestRegistrationPage() {
         <div className="links">
             <a href="/login">Login</a>
             <a href="/register">Register</a>
+             <a href="/">Home</a>
         </div>
       </div>
     </div>

@@ -1,22 +1,28 @@
 import React from "react";
-import '../Css/Footer.css'
-import emailLogo from "../assets/email-1-svgrepo-com.svg";
-import githubLogo from "../assets/github-142-svgrepo-com.svg";
-import instagramLogo from "../assets/instagram-svgrepo-com.svg";
-import copyrightLogo from "../assets/copyright-svgrepo-com.svg";
+import '../../css/footer.css'
+import emailLogo from "../../assets/email-1-svgrepo-com.svg";
+import githubLogo from "../../assets/github-142-svgrepo-com.svg";
+import instagramLogo from "../../assets/instagram-svgrepo-com.svg";
+import copyrightLogo from "../../assets/copyright-svgrepo-com.svg";
 
 function SocialMediaIcons({ gitAccount, instagram, email }) {
     return (
       <>
         <div className="SocialsContainer">
           <div>
-            <img src={githubLogo} alt="gitLogo" />
+            <a href="#" target="_blank" rel="noreferrer">
+              <img src={githubLogo} alt="gitLogo" />
+              </a>
           </div>
           <div>
-            <img src={instagramLogo} alt="instagramLogo" />
+            <a href="#">
+              <img src={instagramLogo} alt="instagramLogo" target="_blank" rel="noreferrer" />
+              </a>
           </div>
           <div>
-            <img src={emailLogo} alt="emailLogo" />
+            <a href="#" target="_blank" rel="noreferrer">
+              <img src={emailLogo} alt="emailLogo" />
+              </a>
           </div>
         </div>
       </>
@@ -31,7 +37,7 @@ function CopyRight() {
           <div className="logoImageDiv">
             <img
               className="logoImage"
-              src="/heart-solid.svg"
+              src="/logo.png"
               alt="logo"
             />
           </div>
