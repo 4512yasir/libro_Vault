@@ -1,4 +1,3 @@
-// src/Pages/GuestRegistrationPage.jsx
 import React from "react";
 import GuestRegistration from "../Components/forms/Guestform";
 import "../css/guest.css";

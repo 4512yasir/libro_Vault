@@ -1,0 +1,102 @@
+[
+    {
+      "id": 1,
+      "username": "admin_yasir",
+      "email": "yasir.admin@libro.com",
+      "phone": "0700000001",
+      "role": "admin",
+      "age": 30,
+      "gender": "male",
+      "location": "Nairobi",
+      "password": "admin123"
+    },
+    {
+      "id": 2,
+      "username": "admin_sara",
+      "email": "sara.admin@libro.com",
+      "phone": "0700000002",
+      "role": "admin",
+      "age": 35,
+      "gender": "female",
+      "location": "Mombasa",
+      "password": "admin456"
+    },
+    {
+      "id": 3,
+      "username": "admin_kevin",
+      "email": "kevin.admin@libro.com",
+      "phone": "0700000003",
+      "role": "admin",
+      "age": 40,
+      "gender": "male",
+      "location": "Kisumu",
+      "password": "admin789"
+    },
+    {
+      "id": 4,
+      "username": "member_jane",
+      "email": "jane.member@libro.com",
+      "phone": "0700000011",
+      "role": "member",
+      "age": 22,
+      "gender": "female",
+      "location": "Nairobi",
+      "password": "member123"
+    },
+    {
+      "id": 5,
+      "username": "member_brian",
+      "email": "brian.member@libro.com",
+      "phone": "0700000012",
+      "role": "member",
+      "age": 28,
+      "gender": "male",
+      "location": "Eldoret",
+      "password": "member456"
+    },
+    {
+      "id": 6,
+      "username": "member_amina",
+      "email": "amina.member@libro.com",
+      "phone": "0700000013",
+      "role": "member",
+      "age": 24,
+      "gender": "female",
+      "location": "Kakamega",
+      "password": "member789"
+    },
+    {
+      "id": 7,
+      "username": "guest_sam",
+      "email": "sam.guest@libro.com",
+      "phone": "0700000021",
+      "role": "guest",
+      "age": 18,
+      "gender": "male",
+      "location": "Nakuru",
+      "password": "guest123"
+    },
+    {
+      "id": 8,
+      "username": "guest_nancy",
+      "email": "nancy.guest@libro.com",
+      "phone": "0700000022",
+      "role": "guest",
+      "age": 20,
+      "gender": "female",
+      "location": "Thika",
+      "password": "guest456"
+    },
+    {
+      "id": 9,
+      "username": "guest_alex",
+      "email": "alex.guest@libro.com",
+      "phone": "0700000023",
+      "role": "guest",
+      "age": 21,
+      "gender": "male",
+      "location": "Meru",
+      "password": "guest789"
+    }
+  ]
+  
