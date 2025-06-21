@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import "../../css/Layout.css";
 
 export default function Sidebar() {
@@ -11,30 +12,35 @@ export default function Sidebar() {
 
   const role = user?.role;
 
-  let sideLinks = [];
+  const sideLinks = [];
 
   if (role === "admin") {
-    sideLinks = [
-      { Linkname: "Dashboard", path: "/dashboard" },
-      { Linkname: "Books", path: "/books" },
-      { Linkname: "Members", path: "/members" },
-      { Linkname: "Guest Logs", path: "/guestlogs" },
-      { Linkname: "Inventory", path: "/inventory" }
-    ];
+    sideLinks.push(
+      { name: "Dashboard", path: "/dashboard" },
+      { name: "Books", path: "/books" },
+      { name: "Members", path: "/members" },
+      { name: "Guest Logs", path: "/guestlogs" },
+      { name: "Inventory", path: "/inventory" }
+    );
   } else if (role === "member") {
-    sideLinks = [
-      { Linkname: "Dashboard", path: "/dashboard" },
-      { Linkname: "Books", path: "/books" },
-      { Linkname: "Borrowed", path: "/borrowed" }
-    ];
+    sideLinks.push(
+      { name: "Dashboard", path: "/dashboard" },
+      { name: "Books", path: "/books" },
+      { name: "Borrowed", path: "/borrowed" }
+    );
   }
 
+  if (!role) return null; 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${role}`}>
       {sideLinks.map((link, index) => (
-        <a key={index} href={link.path}>
-          {link.Linkname}
-        </a>
+        <NavLink
+          key={index}
+          to={link.path}
+          className={({ isActive }) => isActive ? "active" : ""}
+        >
+          {link.name}
+        </NavLink>
       ))}
     </div>
   );
