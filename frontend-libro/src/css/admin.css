@@ -16,6 +16,8 @@
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 30px;
+    width: 50px;
 }
 
 .member-card h3 {
@@ -76,6 +78,8 @@
     padding: 15px;
     margin: 10px;
     border-radius: 6px;
+    height: 250px;
+    width: 230px;
 }
 
 .book-card button {
@@ -174,4 +178,114 @@
 
 .borrowing-page button:hover {
     background-color: #388E3C;
+}
+
+
+.genre-management {
+    padding: 20px;
+}
+
+.genre-form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.genre-form input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.genre-form button {
+    padding: 8px 16px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.genre-form button:hover {
+    background-color: #1565c0;
+}
+
+.genre-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.genre-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.genre-list li button {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.genre-list li button:hover {
+    background-color: #c62828;
+}
+
+
+.inventory-management {
+    padding: 20px;
+}
+
+.inventory-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.inventory-form input {
+    flex: 1;
+    padding: 8px;
+}
+
+.inventory-form button {
+    padding: 8px 16px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.inventory-form button:hover {
+    background-color: #1565c0;
+}
+
+.inventory-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.inventory-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.inventory-list li button {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.inventory-list li button:hover {
+    background-color: #c62828;
 }

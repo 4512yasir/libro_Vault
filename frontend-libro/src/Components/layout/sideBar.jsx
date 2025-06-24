@@ -22,7 +22,8 @@ export default function Sidebar() {
       { name: "GuestLog" , path : "/admin-guestlog"},
       { name: "Borrowing History" , path : "/admin-borrowinghistory"},
       { name: "Borrowing Management", path: "/admin-borrowing" },
-      { name: "Inventory", path: "/admin-inventory" }
+      { name: "Inventory", path: "/admin-inventory" },
+      { name: "Genre-Management", path:"/admin-genre"}
     );
   } else if (role === "member") {
     sideLinks.push(
