@@ -25,17 +25,16 @@ export default function Navbar() {
   } else if (role === "member") {
     navLinks = (
       <>
-        <a href="/">Home</a>
+        <a href="/dashboard">Home</a>
         <a href="/books">Books</a>
         <a href="/profile">Profile</a>
-        <span className="welcome-text">Welcome, {name}</span>
         <button onClick={handleLogout}>Logout</button>
       </>
     );
   } else if (role === "admin") {
     navLinks = (
       <>
-        <a href="/">Home</a>
+        <a href="/dashboard">Home</a>
         <a href="/books">Books</a>
         <a href="/profile">Profile</a>
         <span className="welcome-text">Admin</span>

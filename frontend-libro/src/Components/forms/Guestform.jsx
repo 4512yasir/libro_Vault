@@ -29,8 +29,8 @@ export default function GuestRegistration() {
     setSuccessMessage("");
     setErrorMessage("");
 
-    const { fullName, phone, purpose } = guestData;
-    if (!fullName || !phone || !purpose) {
+    const { fullName, purpose } = guestData;
+    if (!fullName || !purpose) {
       setErrorMessage("Please fill in all required fields.");
       return;
     }
@@ -49,7 +49,6 @@ export default function GuestRegistration() {
       setSuccessMessage("Guest registered successfully!");
       setGuestData({
         fullName: "",
-        phone: "",
         institution: "",
         purpose: "",
         date: new Date().toISOString().split("T")[0],
@@ -83,16 +82,6 @@ export default function GuestRegistration() {
           />
         </div>
 
-        <div className="input-group">
-          <label>Phone *</label>
-          <input
-            type="tel"
-            name="phone"
-            value={guestData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
 
         <div className="input-group">
           <label>Institution</label>

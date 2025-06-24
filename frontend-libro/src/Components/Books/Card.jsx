@@ -1,14 +1,20 @@
 import React from "react";
-import "../../css/books.css"
+import "../../css/books.css";
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, onBorrow, isBorrowed, showBorrowButton }) {
   return (
     <div className="book-card">
-      <img src={book.cover} alt={book.title} className="book-cover" />
       <h3>{book.title}</h3>
-      <p><strong>Author:</strong> {book.author}</p>
-      <p><strong>Genre:</strong> {book.genre}</p>
-      <p><strong>Status:</strong> {book.available ? "Available" : "Borrowed"}</p>
+      <p>Author: {book.author}</p>
+
+      {showBorrowButton && (
+        <button
+          onClick={() => onBorrow(book)}
+          disabled={isBorrowed}
+        >
+          {isBorrowed ? "Borrowed" : "Borrow"}
+        </button>
+      )}
     </div>
   );
 }

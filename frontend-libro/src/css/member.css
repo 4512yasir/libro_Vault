@@ -1,0 +1,194 @@
+.member-books {
+    padding: 30px;
+}
+
+.member-books h2 {
+    margin-bottom: 20px;
+}
+
+.book-controls {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 12px;
+    align-items: center;
+}
+
+.pagination button {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.borrowed-books-page {
+    padding: 30px;
+}
+
+.borrowed-books-page h2 {
+    margin-bottom: 20px;
+}
+
+.borrowed-book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.borrowed-book-card {
+    background-color: #f9f9f9;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.borrowed-book-card h3 {
+    margin-bottom: 8px;
+}
+
+.borrowed-book-card p {
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.borrowed-book-card button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.borrowed-book-card button:hover {
+    background: #c0392b;
+}
+
+.member-history {
+    padding: 30px;
+}
+
+.member-history h2 {
+    margin-bottom: 20px;
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.history-card {
+    background: #fdfdfd;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.history-card h3 {
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.history-card p {
+    margin: 4px 0;
+    color: #555;
+}
+
+.history-card .fine {
+    font-weight: bold;
+    color: #c0392b;
+}
+
+.member-profile {
+    padding: 30px;
+}
+
+.member-profile h2 {
+    margin-bottom: 20px;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.profile-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.profile-image img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid #4a90e2;
+}
+
+.profile-image input {
+    display: block;
+}
+
+.profile-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.profile-info p {
+    margin: 8px 0;
+}
+
+.input-group {
+    margin: 10px 0;
+}
+
+.input-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 6px;
+}
+
+button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-top: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3a74bb;
+}

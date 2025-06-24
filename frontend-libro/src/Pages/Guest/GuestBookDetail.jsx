@@ -8,12 +8,10 @@ export default function GuestBookDetails() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    // Simulated fetch: replace with actual data later
     const allBooks = JSON.parse(localStorage.getItem("guestBooks")) || [];
     const foundBook = allBooks.find((b) => String(b.id) === id);
     setBook(foundBook);
 
-    // Store viewed book to guestBookLog
     if (user?.role === "guest" && foundBook) {
       const guestLog = JSON.parse(localStorage.getItem("guestBookLog")) || [];
       const alreadyLogged = guestLog.find((b) => b.id === foundBook.id);
