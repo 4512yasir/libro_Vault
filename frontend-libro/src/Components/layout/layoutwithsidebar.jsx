@@ -1,19 +1,15 @@
 import React from "react";
 import Sidebar from "./sideBar";
-import '../../css/Layout.css'
+import '../../css/Layout.css';
 import { useLocation } from "react-router-dom";
-
-const sidebarRoutes = [
-  "/dashboard", "/books", "/borrowed", "/history", "/profile",
-  "/members", "/guestlogs", "/inventory"
-];
 
 export default function LayoutWithSidebar({ children }) {
   const location = useLocation();
   const user = JSON.parse(localStorage.getItem("user"));
   const role = user?.role;
 
-  const showSidebar = role && sidebarRoutes.includes(location.pathname);
+  // Show sidebar on all member and admin pages
+  const showSidebar = role === "member" || role === "admin";
 
   return (
     <div className="layout-container">

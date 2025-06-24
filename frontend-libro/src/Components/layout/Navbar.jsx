@@ -25,7 +25,7 @@ export default function Navbar() {
   } else if (role === "member") {
     navLinks = (
       <>
-        <a href="/dashboard">Home</a>
+        <a href="/member-dashboard">Home</a>
         <a href="/books">Books</a>
         <a href="/profile">Profile</a>
         <button onClick={handleLogout}>Logout</button>
@@ -34,8 +34,8 @@ export default function Navbar() {
   } else if (role === "admin") {
     navLinks = (
       <>
-        <a href="/dashboard">Home</a>
-        <a href="/books">Books</a>
+        <a href="/admin-dashboard">Home</a>
+        <a href="/admin-books">Books</a>
         <a href="/profile">Profile</a>
         <span className="welcome-text">Admin</span>
         <button onClick={handleLogout}>Logout</button>

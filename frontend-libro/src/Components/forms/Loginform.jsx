@@ -40,9 +40,9 @@ export default function LoginForm() {
       localStorage.setItem("user", JSON.stringify(user));
       
       if (user.role === "admin") {
-        navigate("/dashboard");
+        navigate("/admin-dashboard");
       } else if (user.role === "member") {
-        navigate("/dashboard");
+        navigate("/member-dashboard");
       }
     } else {
       setError("Invalid username or password.");
