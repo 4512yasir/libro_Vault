@@ -24,6 +24,8 @@ import AdminDashboard from "./Pages/Admin/dashboard.jsx";
 import AdminMembers from "./Pages/Admin/members.jsx";
 import AdminBooks from "./Pages/Admin/books.jsx";
 import AdminGuestLogs from "./Pages/Admin/guestlogs.jsx";
+import AdminBorrowingManagement from "./Pages/Admin/borrowmanagement.jsx";
+import AdminBorrowingHistory from "./Pages/Admin/borrowedhistory.jsx";
 
 function AppContent() {
   const location = useLocation();
@@ -122,6 +124,17 @@ function AppContent() {
             </LayoutWithSidebar>
            }
            />
+           <Route
+          path="/admin-borrowing"
+          element={
+            <LayoutWithSidebar>
+               <AdminBorrowingManagement />
+             </LayoutWithSidebar>
+          }
+          />
+          {/* <Route 
+          path="/" */}
+      
        
       </Routes>
     </div>

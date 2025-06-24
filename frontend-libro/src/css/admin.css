@@ -135,3 +135,43 @@
 .guest-log-table tr:hover {
     background-color: #f1f1f1;
 }
+
+.borrowing-page {
+    padding: 20px;
+}
+
+.borrowing-page table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.borrowing-page th,
+.borrowing-page td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.borrowing-page th {
+    background-color: #f2f2f2;
+}
+
+.borrowing-page tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.borrowing-page tr:hover {
+    background-color: #f1f1f1;
+}
+
+.borrowing-page button {
+    padding: 6px 10px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.borrowing-page button:hover {
+    background-color: #388E3C;
+}
