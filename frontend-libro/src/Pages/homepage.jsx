@@ -1,7 +1,6 @@
 import React from "react";
 import "../css/home.css";
 import Footer from "../Components/layout/Footer";
-// import heroImage from "../assets/hero-books.svg"; // use your image
 
 export default function HomePage() {
   return (
