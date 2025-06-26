@@ -20,7 +20,7 @@ export default function MemberBooks() {
       .then((res) => res.json())
       .then((data) => {
         setBooks(data);
-        localStorage.setItem("books", JSON.stringify(data)); // Optional: Update localStorage
+        localStorage.setItem("books", JSON.stringify(data)); 
       })
       .catch((error) => console.error("Error fetching books:", error));
   

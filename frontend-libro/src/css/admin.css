@@ -309,6 +309,15 @@
     border-radius: 8px;
 }
 
+.returned {
+    color: green;
+    font-weight: bold;
+}
+
+.not-returned {
+    color: red;
+    font-weight: bold;
+}
 .download-btn {
     padding: 10px 15px;
     background-color: #4CAF50;

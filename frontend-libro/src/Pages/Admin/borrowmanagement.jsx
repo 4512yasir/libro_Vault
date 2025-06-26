@@ -25,7 +25,6 @@ export default function AdminBorrowingManagement() {
     try {
       const res = await fetch(`http://127.0.0.1:5000/borrowings/return/${id}`, { method: "PUT" });
       if (res.ok) {
-        // Update the list locally (no need to refetch)
         setBorrowings((prev) => prev.filter((b) => b.id !== id));
       } else {
         console.error("Failed to return the book.");
@@ -36,7 +35,7 @@ export default function AdminBorrowingManagement() {
   };
 
   const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const options = { year: "numeric", month: "short", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 

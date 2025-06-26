@@ -50,11 +50,28 @@ def return_book(borrow_id):
     db.session.commit()
     return jsonify({"message": "Book returned successfully"}), 200
 
-# ✅ Get All Borrowings
 @borrowing_bp.route('/', methods=['GET'])
 def get_borrowings():
     borrowings = Borrowing.query.all()
-    return jsonify([b.to_dict() for b in borrowings]), 200
+    result = []
+
+    for b in borrowings:
+        book = Book.query.get(b.book_id)
+        member = b.member  # Assuming you have a relationship set up: Borrowing -> Member
+
+        result.append({
+            "id": b.id,
+            "book_id": b.book_id,
+            "book_title": book.title if book else "Unknown Book",
+            "member_id": b.member_id,
+            "member_name": member.username if member else "Unknown Member",
+            "borrow_date": b.borrow_date,
+            "due_date": b.due_date,
+            "returned": b.returned
+        })
+
+    return jsonify(result), 200
+
 
 # ✅ Get a Member's Borrowing History
 @borrowing_bp.route('/member/<int:member_id>', methods=['GET'])
