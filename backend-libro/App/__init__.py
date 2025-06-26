@@ -4,6 +4,7 @@ from App.models import db, Book, Member, Guest
 
 def create_app():
     app = Flask(__name__)
+    app.url_map.strict_slashes = False 
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../db/libro_vault.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

@@ -3,43 +3,63 @@ import "../../css/admin.css";
 
 export default function AdminBorrowingHistory() {
   const [history, setHistory] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/borrowings/')
-      .then(response => response.json())
-      .then(data => setHistory(data))
-      .catch(error => console.error("Error fetching history:", error));
+    fetchHistory();
   }, []);
 
+  const fetchHistory = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/borrowings");
+      const data = await res.json();
+      setHistory(data);
+    } catch (error) {
+      console.error("Error fetching borrowing history:", error);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const filteredHistory = history.filter((h) =>
+    h.book_title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    h.member_name?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="borrowing-page">
+    <div className="history-page">
       <h2>Borrowing History</h2>
 
-      {history.length === 0 ? (
+      <input
+        type="text"
+        placeholder="Search by book or member..."
+        className="history-search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+      {filteredHistory.length === 0 ? (
         <p>No borrowing history available.</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Member ID</th>
-              <th>Book ID</th>
-              <th>Borrow Date</th>
-              <th>Due Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {history.map((item) => (
-              <tr key={item.id}>
-                <td>{item.member_id}</td>
-                <td>{item.book_id}</td>
-                <td>{item.borrow_date}</td>
-                <td>{item.due_date}</td>
-                <td>{item.returned ? "Returned" : "Borrowed"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="history-grid">
+          {filteredHistory.map((h) => (
+            <div key={h.id} className="history-card">
+              <h3>{h.book_title}</h3>
+              <p><strong>Borrowed by:</strong> {h.member_name}</p>
+              <p><strong>Borrow Date:</strong> {formatDate(h.borrow_date)}</p>
+              <p><strong>Due Date:</strong> {formatDate(h.due_date)}</p>
+              <p>
+                <strong>Status: </strong>
+                <span className={h.returned ? "returned" : "not-returned"}>
+                  {h.returned ? "Returned" : "Not Returned"}
+                </span>
+              </p>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

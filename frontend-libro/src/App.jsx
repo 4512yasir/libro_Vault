@@ -26,8 +26,8 @@ import AdminBooks from "./Pages/Admin/books.jsx";
 import AdminGuestLogs from "./Pages/Admin/guestlogs.jsx";
 import AdminBorrowingManagement from "./Pages/Admin/borrowmanagement.jsx";
 import AdminBorrowingHistory from "./Pages/Admin/borrowedhistory.jsx";
-import AdminGenreMANAGEMENT from "./Pages/Admin/genre.jsx";
-import AdminInventoryManagement from "./Pages/Admin/inventory.jsx";
+import Genre from "./Pages/Admin/genre.jsx";
+import Inventory from "./Pages/Admin/inventory.jsx";
 
 function AppContent() {
   const location = useLocation();
@@ -146,7 +146,7 @@ function AppContent() {
           path="/admin-genre"
           element={
             <LayoutWithSidebar>
-              <AdminGenreMANAGEMENT/>
+              <Genre/>
             </LayoutWithSidebar>
           }
           />
@@ -154,7 +154,7 @@ function AppContent() {
           path="/admin-inventory"
           element={
             <LayoutWithSidebar>
-            <AdminInventoryManagement />
+            <Inventory />
             </LayoutWithSidebar>
           }
           />

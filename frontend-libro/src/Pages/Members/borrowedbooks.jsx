@@ -19,25 +19,28 @@ export default function BorrowedBooks() {
     const returnEntry = {
       ...book,
       returnedDate: new Date().toISOString().split("T")[0],
-      fine: "Ksh 0", // we can simulate late fee later
+      fine: "Ksh 0",
     };
     localStorage.setItem("borrowHistory", JSON.stringify([...history, returnEntry]));
 
-    alert(`Returned "${book.title}"`);
+    alert(`✅ You have successfully returned "${book.title}"!`);
   };
 
   return (
     <div className="borrowed-books-page">
-      <h2>Borrowed Books</h2>
+      <h2>📚 Your Borrowed Books</h2>
       {borrowedBooks.length === 0 ? (
-        <p>You have not borrowed any books yet.</p>
+        <div className="empty-state">
+          <p>You have not borrowed any books yet.</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/4076/4076503.png" alt="Empty" />
+        </div>
       ) : (
         <div className="borrowed-book-grid">
           {borrowedBooks.map((book) => (
             <div key={book.id} className="borrowed-book-card">
               <h3>{book.title}</h3>
-              <p>Author: {book.author}</p>
-              <button onClick={() => handleReturn(book)}>Return</button>
+              <p><strong>Author:</strong> {book.author}</p>
+              <button onClick={() => handleReturn(book)}>Return Book</button>
             </div>
           ))}
         </div>

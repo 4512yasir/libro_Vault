@@ -1,14 +1,16 @@
 import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../../css/Layout.css";
 
 export default function Navbar() {
   const user = JSON.parse(localStorage.getItem("user"));
   const role = user?.role;
-  const name = user?.name;
+  const name = user?.name || "Guest";
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    window.location.href = "/";
+    navigate("/");
   };
 
   let navLinks;
@@ -16,38 +18,38 @@ export default function Navbar() {
   if (role === "guest") {
     navLinks = (
       <>
-        <a href="/guest-home">Home</a>
-        <a href="/guest-books">Books</a>
-        <a href="/guest-log">Logs</a>
-        <button onClick={handleLogout}>Logout</button>
+        <NavLink to="/guest-home" className="nav-link">Home</NavLink>
+        <NavLink to="/guest-books" className="nav-link">Books</NavLink>
+        <NavLink to="/guest-log" className="nav-link">Logs</NavLink>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </>
     );
   } else if (role === "member") {
     navLinks = (
       <>
-        <a href="/member-dashboard">Home</a>
-        <a href="/books">Books</a>
-        <a href="/profile">Profile</a>
-        <button onClick={handleLogout}>Logout</button>
+        <NavLink to="/member-dashboard" className="nav-link">Home</NavLink>
+        <NavLink to="/books" className="nav-link">Books</NavLink>
+        <NavLink to="/profile" className="nav-link">Profile</NavLink>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </>
     );
   } else if (role === "admin") {
     navLinks = (
       <>
-        <a href="/admin-dashboard">Home</a>
-        <a href="/admin-books">Books</a>
-        <a href="/profile">Profile</a>
-        <span className="welcome-text">Admin</span>
-        <button onClick={handleLogout}>Logout</button>
+        <NavLink to="/admin-dashboard" className="nav-link">Home</NavLink>
+        <NavLink to="/admin-books" className="nav-link">Books</NavLink>
+        <NavLink to="/profile" className="nav-link">Profile</NavLink>
+        <span className="welcome-text">Welcome, Admin</span>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </>
     );
   } else {
     navLinks = (
       <>
-        <a href="/">Home</a>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-        <a href="/guest">Guest Access</a>
+        <NavLink to="/" className="nav-link">Home</NavLink>
+        <NavLink to="/login" className="nav-link">Login</NavLink>
+        <NavLink to="/register" className="nav-link">Register</NavLink>
+        <NavLink to="/guest" className="nav-link">Guest Access</NavLink>
       </>
     );
   }
@@ -58,7 +60,15 @@ export default function Navbar() {
         <img className="logoimg" src="/logo.png" alt="logo" />
       </div>
 
-      <div className="navlinks">{navLinks}</div>
+      <div className="navlinks">
+        {navLinks}
+      </div>
+
+      {role && (
+        <div className="welcome-msg">
+          <span>Hello, {name}!</span>
+        </div>
+      )}
     </div>
   );
 }

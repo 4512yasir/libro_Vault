@@ -32,7 +32,7 @@ export default function AdminBooks() {
   
       if (response.ok) {
         const createdBook = await response.json();
-        setBooks([...books, createdBook]);  // Add to state
+        setBooks([...books, createdBook]);  
       } else {
         console.error("Failed to add book.");
       }

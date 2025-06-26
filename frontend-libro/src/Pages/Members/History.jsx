@@ -11,17 +11,21 @@ export default function History() {
 
   return (
     <div className="member-history">
-      <h2>Borrowing History</h2>
+      <h2>📜 Your Borrowing History</h2>
+
       {history.length === 0 ? (
-        <p>You haven't returned any books yet.</p>
+        <div className="empty-history">
+          <p>You haven't returned any books yet.</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/4076/4076503.png" alt="No History" />
+        </div>
       ) : (
         <div className="history-grid">
           {history.map((entry, index) => (
             <div key={index} className="history-card">
               <h3>{entry.title}</h3>
-              <p>Author: {entry.author}</p>
-              <p>Returned: {entry.returnedDate}</p>
-              <p className="fine">Fine: {entry.fine || "Ksh 0"}</p>
+              <p><strong>Author:</strong> {entry.author}</p>
+              <p><strong>Returned:</strong> {entry.returnedDate}</p>
+              <span className="fine-badge">{entry.fine || "Ksh 0"}</span>
             </div>
           ))}
         </div>

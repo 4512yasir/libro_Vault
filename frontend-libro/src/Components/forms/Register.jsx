@@ -14,6 +14,7 @@ export default function RegisterForm() {
     age: "",
     gender: "",
     location: "",
+    role:"member"
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -33,12 +34,12 @@ export default function RegisterForm() {
       return;
     }
   
-    // Only send the fields the backend expects
+    
     const userData = {
       username: formData.username,
       email: formData.email,
       password: formData.password,
-      role: "member" // optional, but it's good to specify
+      role: formData.role
     };
   
     try {
@@ -62,10 +63,11 @@ export default function RegisterForm() {
           age: "",
           gender: "",
           location: "",
+          
         });
   
-        // Redirect to dashboard
-        navigate("/dashboard");
+        // Redirect to login
+        navigate("/login");
       } else {
         alert("Signup failed! Please try again.");
       }
@@ -171,6 +173,19 @@ export default function RegisterForm() {
             onChange={handleChange}
             required
           />
+           
+           <select
+            name="role"
+            className="signup-input"
+            value={formData.role || "member"}
+            onChange={handleChange}
+            required
+>
+  <option value="member">Member</option>
+  <option value="admin">Admin</option>
+</select>
+
+          
 
           <button type="submit" className="register-button">Register</button>
         </form>

@@ -1,31 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../../css/guest-content.css";
+import "../../css/admin.css";
 
 export default function GuestBooks() {
   const [books, setBooks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    // Simulated guest books from localStorage
-    const dummyBooks = JSON.parse(localStorage.getItem("guestBooks")) || [
-      { id: 1, title: "Clean Code", author: "Robert C. Martin", description: "A handbook of agile software craftsmanship." },
-      { id: 2, title: "Atomic Habits", author: "James Clear", description: "An easy way to build good habits and break bad ones." },
-      { id: 3, title: "The Pragmatic Programmer", author: "Andrew Hunt", description: "Tips for software engineers." }
-    ];
-    setBooks(dummyBooks);
-    localStorage.setItem("guestBooks", JSON.stringify(dummyBooks)); // Save for later use
+    fetch("http://127.0.0.1:5000/books")
+      .then((r) => r.json())
+      .then((data) => {
+        setBooks(data);
+        localStorage.setItem("guestBooks", JSON.stringify(data));
+      })
+      .catch((error) => console.error("Error fetching books:", error));
   }, []);
 
+  const filteredBooks = books.filter((b) =>
+    b.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    b.author.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="guest-booklist">
-      <h2>Available Books (Guest Access)</h2>
-      <ul>
-        {books.map((book) => (
-          <li key={book.id} className="book-list-item">
-            <Link to={`/guest-book/${book.id}`}>{book.title} by {book.author}</Link>
-          </li>
-        ))}
-      </ul>
+    <div className="guest-books-page">
+      <h2>Available Books</h2>
+
+      <input
+        type="text"
+        placeholder="Search by title or author..."
+        className="guest-search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+      {filteredBooks.length === 0 ? (
+        <p>No books found.</p>
+      ) : (
+        <div className="book-grid">
+          {filteredBooks.map((b) => (
+            <Link to={`/guest-book/${b.id}`} key={b.id} className="book-card">
+              <h3>{b.title}</h3>
+              <p>by {b.author}</p>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

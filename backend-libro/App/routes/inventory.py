@@ -5,13 +5,13 @@ from App.models import Inventory
 inventory_bp = Blueprint('inventory', __name__)
 
 # Get all inventory items
-@inventory_bp.route('/', methods=['GET'])
+@inventory_bp.route('', methods=['GET'])  # 👈 removed trailing slash
 def get_inventory():
     items = Inventory.query.all()
     return jsonify([item.to_dict() for item in items]), 200
 
 # Add a new inventory item
-@inventory_bp.route('/', methods=['POST'])
+@inventory_bp.route('', methods=['POST'])  # 👈 removed trailing slash
 def add_inventory():
     data = request.get_json()
 
@@ -30,7 +30,7 @@ def add_inventory():
     return jsonify(new_item.to_dict()), 201
 
 # Update inventory item
-@inventory_bp.route('/<int:id>', methods=['PUT'])
+@inventory_bp.route('/<int:id>', methods=['PUT'])  # ✅ This one is already okay
 def update_inventory(id):
     item = Inventory.query.get(id)
     if not item:
@@ -45,7 +45,7 @@ def update_inventory(id):
     return jsonify(item.to_dict()), 200
 
 # Delete inventory item
-@inventory_bp.route('/<int:id>', methods=['DELETE'])
+@inventory_bp.route('/<int:id>', methods=['DELETE'])  # ✅ This one is already okay
 def delete_inventory(id):
     item = Inventory.query.get(id)
     if not item:

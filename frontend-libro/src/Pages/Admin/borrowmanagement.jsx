@@ -3,62 +3,74 @@ import "../../css/admin.css";
 
 export default function AdminBorrowingManagement() {
   const [borrowings, setBorrowings] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/borrowings/')
-      .then(response => response.json())
-      .then(data => setBorrowings(data))
-      .catch(error => console.error("Error fetching borrowings:", error));
+    fetchBorrowings();
   }, []);
 
-  const handleReturn = async (id) => {
+  const fetchBorrowings = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/borrowings/return/${id}`, {
-        method: 'PUT',
-      });
+      const res = await fetch("http://127.0.0.1:5000/borrowings");
+      if (!res.ok) throw new Error("Failed to fetch borrowings");
 
-      if (response.ok) {
-        alert("Book returned successfully");
-        setBorrowings(borrowings.filter(borrow => borrow.id !== id));
-      } else {
-        alert("Error returning book.");
-      }
+      const data = await res.json();
+      setBorrowings(data.filter((b) => !b.returned));
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error fetching borrowings:", error);
     }
   };
+
+  const returnBook = async (id) => {
+    try {
+      const res = await fetch(`http://127.0.0.1:5000/borrowings/return/${id}`, { method: "PUT" });
+      if (res.ok) {
+        // Update the list locally (no need to refetch)
+        setBorrowings((prev) => prev.filter((b) => b.id !== id));
+      } else {
+        console.error("Failed to return the book.");
+      }
+    } catch (error) {
+      console.error("Error returning book:", error);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const filteredBorrowings = borrowings.filter((b) =>
+    b.book_title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    b.member_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="borrowing-page">
       <h2>Borrowing Management</h2>
 
-      {borrowings.length === 0 ? (
-        <p>No active borrowings.</p>
+      <input
+        type="text"
+        placeholder="Search by book or member..."
+        className="borrowing-search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+      {filteredBorrowings.length === 0 ? (
+        <p>No active borrowings found.</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Member ID</th>
-              <th>Book ID</th>
-              <th>Borrow Date</th>
-              <th>Due Date</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {borrowings.filter(b => !b.returned).map((item) => (
-              <tr key={item.id}>
-                <td>{item.member_id}</td>
-                <td>{item.book_id}</td>
-                <td>{item.borrow_date}</td>
-                <td>{item.due_date}</td>
-                <td>
-                  <button onClick={() => handleReturn(item.id)}>Return Book</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="borrowing-grid">
+          {filteredBorrowings.map((b) => (
+            <div key={b.id} className="borrowing-card">
+              <h3>{b.book_title}</h3>
+              <p><strong>Borrowed by:</strong> {b.member_name}</p>
+              <p><strong>Borrow Date:</strong> {formatDate(b.borrow_date)}</p>
+              <p><strong>Due Date:</strong> {formatDate(b.due_date)}</p>
+              <button onClick={() => returnBook(b.id)}>Mark as Returned</button>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

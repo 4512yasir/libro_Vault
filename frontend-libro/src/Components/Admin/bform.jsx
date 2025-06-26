@@ -1,44 +1,74 @@
 import React, { useState, useEffect } from "react";
 
 export default function BookForm({ onAddBook, onUpdateBook, editingBook }) {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     title: "",
     author: "",
     genre: "",
-    copies: 1,
+    published_year: "",
+   
   });
 
   useEffect(() => {
     if (editingBook) {
-      setFormData(editingBook);
+      setForm(editingBook);
     } else {
-      setFormData({ title: "", author: "", genre: "", copies: 1 });
+      setForm({
+        title: "",
+        author: "",
+        genre: "",
+        published_year: "",
+        
+      });
     }
   }, [editingBook]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (editingBook) {
-      onUpdateBook(formData);
+      onUpdateBook({ ...form, id: editingBook.id });
     } else {
-      onAddBook(formData);
+      onAddBook(form);
     }
-    setFormData({ title: "", author: "", genre: "", copies: 1 });
+
+    // Reset form after submission
+    setForm({ title: "", author: "", genre: "", published_year: "" });
   };
 
   return (
-    <form className="book-form" onSubmit={handleSubmit}>
-      <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} required />
-      <input type="text" name="author" placeholder="Author" value={formData.author} onChange={handleChange} required />
-      <input type="text" name="genre" placeholder="Genre" value={formData.genre} onChange={handleChange} required />
-      <input type="number" name="copies" placeholder="Copies" value={formData.copies} onChange={handleChange} required min={1} />
-      
-      <button type="submit">{editingBook ? "Update Book" : "Add Book"}</button>
+    <form onSubmit={handleSubmit} className="book-form">
+      <input
+        type="text"
+        placeholder="Title"
+        value={form.title}
+        onChange={(e) => setForm({ ...form, title: e.target.value })}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Author"
+        value={form.author}
+        onChange={(e) => setForm({ ...form, author: e.target.value })}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Genre"
+        value={form.genre}
+        onChange={(e) => setForm({ ...form, genre: e.target.value })}
+        required
+      />
+      <input
+        type="number"
+        placeholder="Published Year"
+        value={form.published_year}
+        onChange={(e) => setForm({ ...form, published_year: e.target.value })}
+        required
+      />
+      <button type="submit">
+        {editingBook ? "Update Book" : "Add Book"}
+      </button>
     </form>
   );
 }
