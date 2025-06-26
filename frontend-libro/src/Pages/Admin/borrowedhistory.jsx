@@ -5,8 +5,10 @@ export default function AdminBorrowingHistory() {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("borrowHistory")) || [];
-    setHistory(data);
+    fetch('http://127.0.0.1:5000/borrowings/')
+      .then(response => response.json())
+      .then(data => setHistory(data))
+      .catch(error => console.error("Error fetching history:", error));
   }, []);
 
   return (
@@ -19,19 +21,21 @@ export default function AdminBorrowingHistory() {
         <table>
           <thead>
             <tr>
-              <th>Book Title</th>
-              <th>Borrower</th>
+              <th>Member ID</th>
+              <th>Book ID</th>
               <th>Borrow Date</th>
-              <th>Return Date</th>
+              <th>Due Date</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {history.map((item, index) => (
-              <tr key={index}>
-                <td>{item.title}</td>
-                <td>{item.borrower}</td>
-                <td>{item.borrowDate}</td>
-                <td>{item.returnDate}</td>
+            {history.map((item) => (
+              <tr key={item.id}>
+                <td>{item.member_id}</td>
+                <td>{item.book_id}</td>
+                <td>{item.borrow_date}</td>
+                <td>{item.due_date}</td>
+                <td>{item.returned ? "Returned" : "Borrowed"}</td>
               </tr>
             ))}
           </tbody>

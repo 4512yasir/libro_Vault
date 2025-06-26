@@ -28,14 +28,14 @@ def add_member():
 
     new_member = Member(
         username=data['username'],
-        role=data['role'],
-        borrowed_books=[]  
+        role=data['role']
     )
 
     db.session.add(new_member)
     db.session.commit()
 
     return jsonify(new_member.to_dict()), 201
+
 
 
 @members_bp.route('/<int:id>', methods=['PUT'])

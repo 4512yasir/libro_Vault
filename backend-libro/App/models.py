@@ -28,6 +28,7 @@ class Member(db.Model):
     username = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(50), default="member")
+    password = db.Column(db.String(100), nullable=False)
 
     def to_dict(self):
         return {

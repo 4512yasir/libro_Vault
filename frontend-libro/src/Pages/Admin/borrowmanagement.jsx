@@ -5,15 +5,27 @@ export default function AdminBorrowingManagement() {
   const [borrowings, setBorrowings] = useState([]);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
-    setBorrowings(data);
+    fetch('http://127.0.0.1:5000/borrowings/')
+      .then(response => response.json())
+      .then(data => setBorrowings(data))
+      .catch(error => console.error("Error fetching borrowings:", error));
   }, []);
 
-  const handleReturn = (index) => {
-    const updatedBorrowings = [...borrowings];
-    updatedBorrowings.splice(index, 1);
-    setBorrowings(updatedBorrowings);
-    localStorage.setItem("borrowedBooks", JSON.stringify(updatedBorrowings));
+  const handleReturn = async (id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/borrowings/return/${id}`, {
+        method: 'PUT',
+      });
+
+      if (response.ok) {
+        alert("Book returned successfully");
+        setBorrowings(borrowings.filter(borrow => borrow.id !== id));
+      } else {
+        alert("Error returning book.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -26,22 +38,22 @@ export default function AdminBorrowingManagement() {
         <table>
           <thead>
             <tr>
-              <th>Book Title</th>
-              <th>Borrower</th>
+              <th>Member ID</th>
+              <th>Book ID</th>
               <th>Borrow Date</th>
               <th>Due Date</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {borrowings.map((item, index) => (
-              <tr key={index}>
-                <td>{item.title}</td>
-                <td>{item.borrower}</td>
-                <td>{item.borrowDate}</td>
-                <td>{item.dueDate}</td>
+            {borrowings.filter(b => !b.returned).map((item) => (
+              <tr key={item.id}>
+                <td>{item.member_id}</td>
+                <td>{item.book_id}</td>
+                <td>{item.borrow_date}</td>
+                <td>{item.due_date}</td>
                 <td>
-                  <button onClick={() => handleReturn(index)}>Return Book</button>
+                  <button onClick={() => handleReturn(item.id)}>Return Book</button>
                 </td>
               </tr>
             ))}

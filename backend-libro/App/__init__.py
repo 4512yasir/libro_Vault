@@ -18,9 +18,11 @@ def create_app():
     from App.routes.guest import guests_bp
     from App.routes.borrow import borrowing_bp
     from App.routes.inventory import inventory_bp  
-    from App.routes.genre import genre_bp          
+    from App.routes.genre import genre_bp 
+    from App.routes.auth import auth_bp         
 
     # Register blueprints
+    app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(books_bp, url_prefix='/books')
     app.register_blueprint(members_bp, url_prefix='/members')
     app.register_blueprint(guests_bp, url_prefix='/guests')

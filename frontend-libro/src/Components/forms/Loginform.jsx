@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../css/login.css"; 
+import "../../css/login.css";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
@@ -9,43 +9,36 @@ export default function LoginForm() {
 
   const navigate = useNavigate();
 
-  const dummyUsers = [
-    {
-      username: "admin123",
-      password: "adminpass",
-      fullName: "Admin User",
-      email: "admin@example.com",
-      role: "admin",
-      joined: "2024-01-01"
-    },
-    {
-      username: "member123",
-      password: "memberpass",
-      fullName: "Member One",
-      email: "member@example.com",
-      role: "member",
-      joined: "2024-03-10"
-    }
-  ];
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
 
-    const user = dummyUsers.find(
-      (u) => u.username === username && u.password === password
-    );
+    try {
+      const response = await fetch("http://127.0.0.1:5000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
 
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-      
-      if (user.role === "admin") {
-        navigate("/admin-dashboard");
-      } else if (user.role === "member") {
-        navigate("/member-dashboard");
+      if (response.ok) {
+        const data = await response.json();
+        const user = data.user;
+
+        localStorage.setItem("user", JSON.stringify(user)); 
+
+        if (user.role === "admin") {
+          navigate("/admin-dashboard");
+        } else if (user.role === "member") {
+          navigate("/member-dashboard");
+        }
+      } else if (response.status === 401) {
+        setError("Invalid username or password.");
+      } else {
+        setError("Login failed. Please try again.");
       }
-    } else {
-      setError("Invalid username or password.");
+    } catch (error) {
+      console.error("Error:", error);
+      setError("Failed to connect to the server.");
     }
   };
 
@@ -58,23 +51,23 @@ export default function LoginForm() {
 
         <div className="input-group">
           <label htmlFor="username">Username</label>
-          <input 
-            id="username" 
-            type="text" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-            required 
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
           />
         </div>
 
         <div className="input-group">
           <label htmlFor="password">Password</label>
-          <input 
-            id="password" 
-            type="password" 
+          <input
+            id="password"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required 
+            required
           />
         </div>
 

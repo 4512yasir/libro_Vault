@@ -27,26 +27,32 @@ export default function RegisterForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (formData.password !== formData.confirmpassword) {
       alert("Passwords do not match.");
       return;
     }
-
-    const userData = { ...formData };
-
+  
+    // Only send the fields the backend expects
+    const userData = {
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
+      role: "member" // optional, but it's good to specify
+    };
+  
     try {
-      const response = await fetch("/api/user", {
+      const response = await fetch("http://127.0.0.1:5000/auth/register", { // Correct URL
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(userData)
       });
-
+  
       if (response.ok) {
         alert(`Welcome, ${formData.username}! Your account has been created.`);
-
+  
         setFormData({
           username: "",
           email: "",
@@ -57,8 +63,8 @@ export default function RegisterForm() {
           gender: "",
           location: "",
         });
-
-        // Redirect to dashboard after successful signup
+  
+        // Redirect to dashboard
         navigate("/dashboard");
       } else {
         alert("Signup failed! Please try again.");
@@ -68,6 +74,7 @@ export default function RegisterForm() {
       alert("An error occurred. Please check your server connection.");
     }
   };
+  
 
   return (
     <div className="register-form">
